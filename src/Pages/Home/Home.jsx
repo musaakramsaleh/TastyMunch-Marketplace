@@ -2,6 +2,7 @@ import React from 'react';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import { Slide } from 'react-awesome-reveal';
 import Client from './Client';
+import Testimonial from './Testimonial';
 const Home = () => {
     const {user} = UseAuth()
     return (
@@ -20,6 +21,7 @@ const Home = () => {
             </div>
         </div>
         <Client></Client>
+        <Testimonial></Testimonial>
         </div>
     );
 };

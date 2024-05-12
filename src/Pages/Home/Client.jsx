@@ -1,7 +1,6 @@
 import React from 'react';
 import client_1 from '../../assets/client-1.jpeg'
 import client_2 from '../../assets/client-2.png'
-import client_3 from '../../assets/client-3.webp'
 import client_4 from '../../assets/client-4.jpeg'
 import client_5 from '../../assets/client-5.png'
 import client_6 from '../../assets/client-6.png'

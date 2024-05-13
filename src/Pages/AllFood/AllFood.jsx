@@ -31,7 +31,7 @@ const AllFood = () => {
         <div className='max-w-[1440px] mx-auto grid grid-cols-3 gap-5'>
            {
             foods.map(food=> <div key={food._id} className="card card-compact mr-5 gap-5 bg-base-100 shadow-xl">
-  <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+  <figure><img src={food.FoodImage} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{food.FoodName}</h2>
     <p>Category: {food.FoodCategory}</p>

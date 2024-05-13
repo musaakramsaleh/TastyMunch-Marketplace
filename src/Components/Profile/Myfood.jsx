@@ -1,46 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import UseAuth from '../../Routes/Hook/UseAuth';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Myfood = () => {
-
+    const {user} = UseAuth()
+    const [food,setfood] =useState([])
+    useEffect(()=>{
+        const getData = async ()=>{
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/food/${user?.email}`)
+            setfood(data)
+        }
+        getData()
+    },[user])
+      console.log(food)
     return (
-        <div>
-            <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr className="hover">
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-        </div>
+       <div>
+        <h2 className='font-lexend font-bold text-2xl text-secondary text-center mt-5'>My Added items</h2>
+        <div className='max-w-[1440px] mx-auto grid grid-cols-3 gap-3 mt-5'>
+        {
+            food.map(foods=><div className='border border-solid shadow-xl p-5' key={foods._id}>
+               <img src={foods.FoodImage} alt="" />
+               <h2 className='font-lexend text-black font-bold'>{foods.FoodName}</h2>
+               <h2 className='font-lexend text-black font-bold'>Price: ${foods.Price}</h2>
+               <Link to={`/update/${foods._id}`}><button className='btn btn-secondary font-lexend font-bold mt-3'>Update</button></Link>
+            </div>)
+        }
+       </div>
+       </div>
     );
 };
 

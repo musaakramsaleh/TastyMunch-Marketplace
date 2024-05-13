@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
-import UseAuth from '../../Routes/Hook/UseAuth';
-import axios from 'axios';
+import React from 'react';
 import Swal from 'sweetalert2';
+import UseAuth from '../../Routes/Hook/UseAuth';
+import { useLoaderData } from 'react-router-dom';
+import axios from 'axios';
 
-const Addfood = () => {
+const Update = () => {
     const{user} = UseAuth()
+    const data = useLoaderData()
+    console.log(data)
     const handleSubmit = async e=>{
         e.preventDefault()
         const form = e.target
@@ -15,23 +18,26 @@ const Addfood = () => {
         const Price = form.price.value
         const FoodOrigin = form.country.value
         const Description = form.description.value
-        const AddBy = { name: user.displayName, email: user.email }
-        const purchaseCount = 0;
-        const fooddata = {FoodName,FoodImage,FoodCategory,quantity,Price,FoodOrigin,Description,AddBy,purchaseCount}
-        try{
-            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/addfood`,fooddata)
-            console.log(data)
-            if(data.insertedId){
-                Swal.fire({
-                  title: "Success!",
-                  text: "Data added Successfully!",
-                  icon: "success"
-                });
-                form.reset()
-              } 
-        }catch(err){
-            console.log(err)
+        const fooddata = {FoodName,FoodImage,FoodCategory,quantity,Price,FoodOrigin,Description}
+        fetch(`${import.meta.env.VITE_API_URL}/update/${data._id}`,{
+        method:'PUT',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(fooddata)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+        if(data.modifiedCount>0){
+          Swal.fire({
+            title: "Success!",
+            text: "Data updated Successfully!",
+            icon: "success"
+          });
+          form.reset()
         }
+      })
         
     }
     return (
@@ -41,29 +47,30 @@ const Addfood = () => {
             <form onSubmit={handleSubmit}>
              <div className=''>
             <label className='font-lexend font-bold my-3'>Food Name:</label><br />
-             <input type="text" name='FoodName' placeholder="Type here" className="input input-bordered w-full" /><br />
+             <input defaultValue={data.FoodName} type="text" name='FoodName' placeholder="Type here" className="input input-bordered w-full" /><br />
              <label className='font-lexend font-bold'>Image url:</label><br />
-             <input type="text" name='FoodImage' placeholder="Type here" className="input input-bordered w-full " />
+             <input defaultValue={data.FoodImage} type="text" name='FoodImage' placeholder="Type here" className="input input-bordered w-full " />
              </div>
              <div className=''>
             <label className='font-lexend font-bold my-3'>Food Category:</label><br />
-             <input type="text" name='Category' placeholder="Type here" className="input input-bordered w-full " /><br />
+             <input defaultValue={data.FoodCategory} type="text" name='Category' placeholder="Type here" className="input input-bordered w-full " /><br />
              <label className='font-lexend font-bold my-3'>Food quantity:</label><br />
-             <input type="text" name='quantity' placeholder="Type here" className="input input-bordered w-full " />
+             <input defaultValue={data.quantity} type="text" name='quantity' placeholder="Type here" className="input input-bordered w-full " />
              </div>
              <div className=''>
             <label className='font-lexend font-bold my-3'>Food price:</label><br />
-             <input type="text" name='price' placeholder="Type here" className="input input-bordered w-full " /><br />
+             <input defaultValue={data.quantity} type="text" name='price' placeholder="Type here" className="input input-bordered w-full " /><br />
              <label className='font-lexend font-bold my-3'>Food Origin (Country):</label><br />
-             <input type="text" name='country' placeholder="Type here" className="input input-bordered w-full " />
+             <input defaultValue={data.FoodOrigin} type="text" name='country' placeholder="Type here" className="input input-bordered w-full " />
              </div>
              <label className='font-lexend font-bold my-3'>Description</label>
             <textarea
+              defaultValue={data.Description}
               className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               name='description'
               id='description'
             ></textarea>
-            <input className='w-full bg-secondary font-lexend font-bold text-xl py-3 rounded-xl text-white cursor-pointer mt-3' type="Submit" value='Add Item' />
+            <input className='w-full bg-secondary font-lexend font-bold text-xl py-3 rounded-xl text-white cursor-pointer mt-3' type="Submit" value='Update' />
             </form>
             </div>
         </div> 
@@ -71,4 +78,4 @@ const Addfood = () => {
     );
 };
 
-export default Addfood;
+export default Update;

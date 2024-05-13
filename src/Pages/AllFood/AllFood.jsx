@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 const AllFood = () => {
     const foo = useLoaderData()
     const [foods,setfoods] = useState(foo)
+    console.log(foods)
     return (
         <div className=''>
             <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(all-food.jpg)`}}>
@@ -47,5 +48,5 @@ const AllFood = () => {
         </div>
     );
 };
-//_id,FoodName,FoodImage,FoodCategory,Price,quantity
+
 export default AllFood;

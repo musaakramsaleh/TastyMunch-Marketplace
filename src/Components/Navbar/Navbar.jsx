@@ -60,16 +60,13 @@ const Navbar = () => {
        className='menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52'
      >
        <li>
-         <div className='justify-between'>Add Job</div>
+         <Link to ='/myfood'><div className='justify-between'>My added food items</div></Link>
        </li>
        <li>
-         <div>My Posted Jobs</div>
+         <Link to = '/addfood'><div>Add a food item</div></Link>
        </li>
        <li>
-         <div>My Bids</div>
-       </li>
-       <li>
-         <div>Bid Requests</div>
+         <Link to ='/myorder'><div>My ordered food items</div></Link>
        </li>
        <li className='mt-2'>
          <button onClick={()=>handleSignout()} className='bg-gray-200 block text-center'>Logout</button>

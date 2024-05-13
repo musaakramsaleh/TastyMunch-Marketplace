@@ -15,7 +15,7 @@ const FoodDetails = () => {
            <p>Made by: {AddBy.name} </p>
            <p>Made by: {AddBy.email} </p>
            <p>Food Origin: {FoodOrigin}</p>
-           <Link><button className='mt-3 mb-5 btn btn-secondary font-lexend font bold'>Purchase</button></Link>
+           <Link to='/buyfood'><button className='mt-3 mb-5 btn btn-secondary font-lexend font bold'>Purchase</button></Link>
            </div>
         </div>
     );

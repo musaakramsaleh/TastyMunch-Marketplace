@@ -11,6 +11,7 @@ import FoodDetails from '../Pages/AllFood/FoodDetails';
 import Addfood from '../Components/Profile/Addfood';
 import Myfood from '../Components/Profile/Myfood';
 import Myorder from '../Components/Profile/Myorder';
+import Buyfood from '../Components/buyfood/Buyfood';
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path:'/allfood',
                 element:<AllFood></AllFood>,
-                loader:()=> fetch('http://localhost:5000/food')
+                loader:()=> fetch(`${import.meta.env.VITE_API_URL}/food`)
             },
             {
                 path:'/gallery',
@@ -55,8 +56,12 @@ const router = createBrowserRouter([
             {
                 path:'/allfood/:id',
                 element:<FoodDetails></FoodDetails>,
-                loader:({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+                loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/foods/${params.id}`)
             },
+            {
+                path:'/buyfood',
+                element:<Buyfood></Buyfood>
+            }
         ]
     }
 ])

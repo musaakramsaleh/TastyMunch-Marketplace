@@ -35,7 +35,7 @@ const AllFood = () => {
   <div className="card-body">
     <h2 className="card-title">{food.FoodName}</h2>
     <p>Category: {food.FoodCategory}</p>
-    <p>Price: {food.price}</p>
+    <p>Price: {food.Price}</p>
     <p>Quantity: {food.quantity}</p>
     <div className="card-actions justify-end">
       <Link to={`/allfood/${food._id}`}><button  className="btn btn-primary">See Details</button></Link>

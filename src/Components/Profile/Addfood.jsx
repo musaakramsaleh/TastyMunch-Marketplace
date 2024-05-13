@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UseAuth from '../../Routes/Hook/UseAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Addfood = () => {
     const{user} = UseAuth()
-    const handleSubmit = e=>{
+    const handleSubmit = async e=>{
         e.preventDefault()
         const form = e.target
         const FoodName = form.FoodName.value
@@ -14,9 +16,23 @@ const Addfood = () => {
         const FoodOrigin = form.country.value
         const Description = form.description.value
         const AddBy = { name: user.displayName, email: user.email }
-        const data = {FoodName,FoodImage,FoodCategory,quantity,Price,FoodOrigin,Description,AddBy}
-        console.log(data)
-        form.reset()
+        const purchaseCount = 0;
+        const fooddata = {FoodName,FoodImage,FoodCategory,quantity,Price,FoodOrigin,Description,AddBy,purchaseCount}
+        try{
+            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/addfood`,fooddata)
+            console.log(data)
+            if(data.insertedId){
+                Swal.fire({
+                  title: "Success!",
+                  text: "Data added Successfully!",
+                  icon: "success"
+                });
+                form.reset()
+              } 
+        }catch(err){
+            console.log(err)
+        }
+        
     }
     return (
         <div className='pb-10'>

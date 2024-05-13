@@ -8,7 +8,7 @@ const Client = () => {
     return (
         <div className='mt-16 max-w-[1440px] mx-auto'>
             <h2 className='text-3xl font-bold font-lexend text-secondary text-center mb-10'>Meet the top partners:</h2>
-            <div className='grid lg:grid-cols-5 text-center justify-center mx-auto items-center mt-10 mb-10'>
+            <div className='grid lg:grid-cols-5 md:grid-cols-2 lg:ml-0 ml-16 text-center md:justify-around  lg:justify-center mx-auto items-center mt-10 mb-10'>
             <div className='w-[250px]'>
                 <img className='w-full border rounded-full' src={client_1} alt="" />
                 <p className='text-2xl font-lexend font-bold text-amber-400 mt-5'>Kacchi vai</p>

@@ -9,7 +9,7 @@ const Home = () => {
         <div>
         <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(banner.jpg)`}}>
 
-            <div className='relative z-50'>
+            <div className='relative z-40'>
             <Slide>
             <h2 className='md:text-4xl text-2xl lg:text-6xl  text-white font-lexend font-bold relative z-40 pt-16 md:pt-40 mx-auto text-center'>"Welcome to TastyMunch <br /> Marketplace Where Every <br /> Bite Tells a Story"</h2>
             <div className='text-center mx-auto w-[130px] mt-5 z-40 relative'>

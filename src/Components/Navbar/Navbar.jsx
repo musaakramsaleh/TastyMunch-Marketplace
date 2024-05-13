@@ -16,8 +16,8 @@ const Navbar = () => {
     const navItems = ()=>{
         return <>
          <li><NavLink to='/' className={({isActive})=>isActive?'text-yellow-600 font-bold':'text-secondary'}>Home</NavLink></li>
-         <li><NavLink to='/new' className={({isActive})=>isActive?'text-primary font-bold':'text-secondary'}>All Foods</NavLink></li>
-         <li><NavLink to='/addcraft' className={({isActive})=>isActive?'text-primary font-bold':'text-secondary'}>Gallery</NavLink></li>
+         <li><NavLink to='/allfood' className={({isActive})=>isActive?'text-yellow-600 font-bold':'text-secondary'}>All Foods</NavLink></li>
+         <li><NavLink to='/gallery' className={({isActive})=>isActive?'text-yellow-600 font-bold':'text-secondary'}>Gallery</NavLink></li>
          </>
     }
     return (
@@ -41,16 +41,41 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     {
-    user? <div className="avatar ml-3">
-      
-    <div className="md:w-12 w-12 rounded-full cursor-pointer z-50">
-      <a className="my-anchor-element"><img src= {user.photoURL}/></a>
-     <Tooltip anchorSelect=".my-anchor-element" place="top">
-     {user.displayName} 
-     </Tooltip>
-    </div>
-    <button onClick={()=>handleSignout()} className='p-3 rounded-lg ml-3 text-white font-bold bg-yellow-300'>Logout</button>
-  </div>:<>
+     user? <div className='dropdown dropdown-end z-50'>
+     <div
+       tabIndex={0}
+       role='button'
+       className='btn btn-ghost btn-circle avatar'
+     >
+       <div className='w-10 rounded-full' title=''>
+         <img
+           referrerPolicy='no-referrer'
+           alt='User Profile Photo'
+           src={user.photoURL}
+         />
+       </div>
+     </div>
+     <ul
+       tabIndex={0}
+       className='menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52'
+     >
+       <li>
+         <div className='justify-between'>Add Job</div>
+       </li>
+       <li>
+         <div>My Posted Jobs</div>
+       </li>
+       <li>
+         <div>My Bids</div>
+       </li>
+       <li>
+         <div>Bid Requests</div>
+       </li>
+       <li className='mt-2'>
+         <button onClick={()=>handleSignout()} className='bg-gray-200 block text-center'>Logout</button>
+       </li>
+     </ul>
+   </div> :<>
   <Link to='/login'  className="p-3 rounded-lg ml-3 text-white font-bold bg-yellow-300">Login</Link>
     <Link to='/register'  className="p-3 rounded-lg ml-3 text-white font-bold bg-yellow-300">Register</Link>
   </>

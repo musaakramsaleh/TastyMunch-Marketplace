@@ -16,7 +16,8 @@ const Buyfood = () => {
        const Price = form.price.value
        const BuyerName = form.BuyerName.value
        const BuyerEmail = form.BuyerEmail.value
-       const quantity = parseInt(form.quantity.value) 
+       const quantity = parseInt(form.quantity.value)
+       const newquantity = data.quantity - quantity 
        const product = {FoodName,Price,BuyerName,BuyerEmail,quantity}
        console.log(product)
        if(quantity>data.quantity){
@@ -32,7 +33,7 @@ const Buyfood = () => {
         // Handle response1 if needed
     
         // Second Axios request to update the value of another collection
-        const response2 = await axios.put(`${import.meta.env.VITE_API_URL}/updatefood/${data._id}`, quantity);
+        const response2 = await axios.put(`${import.meta.env.VITE_API_URL}/updatefood/${data._id}`, product);
         console.log(response2.data);
         // Handle response2 if needed
     

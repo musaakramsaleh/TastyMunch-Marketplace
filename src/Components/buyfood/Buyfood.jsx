@@ -16,31 +16,53 @@ const Buyfood = () => {
        const Price = form.price.value
        const BuyerName = form.BuyerName.value
        const BuyerEmail = form.BuyerEmail.value
+       const owner = data.AddBy.name
+       const image = data.FoodImage
+       const ownermail = data.AddBy.email
        const quantity = parseInt(form.quantity.value)
-       const newquantity = data.quantity - quantity 
-       const product = {FoodName,Price,BuyerName,BuyerEmail,quantity}
+       const date = Date.now()
+       const product = {FoodName,Price,BuyerName,BuyerEmail,quantity,date,owner,image,ownermail}
+       
        console.log(product)
-       if(quantity>data.quantity){
-        return alert("sorry cannot give this. We donot have sufficient product")
-       }
        if(user?.email === data.AddBy.email){
-        return alert("sorry cannot buy your own product")
+        return Swal.fire({
+          title: "Failure",
+          text: "Sorry cannot buy your own product",
+          icon: "alert"
+        });
+       }
+       if(quantity>data.quantity){
+        return  Swal.fire({
+          title: "Failure",
+          text: "sufficient product not available",
+          icon: "alert"
+        });
+       }
+       if(data.quantity<=0){
+        return Swal.fire({
+          title: "Failure",
+          text: "Cannot buy product out of stock",
+          icon: "alert"
+        });
+       }
+       if(!quantity){
+        return Swal.fire({
+          title: "Failure",
+          text: "Please enter quantity",
+          icon: "alert"
+        });
        }
        try {
-        // First Axios request to add data in a collection
         const response1 = await axios.post(`${import.meta.env.VITE_API_URL}/addproduct`, product);
         console.log(response1.data);
-        // Handle response1 if needed
+       
     
-        // Second Axios request to update the value of another collection
         const response2 = await axios.put(`${import.meta.env.VITE_API_URL}/updatefood/${data._id}`, product);
         console.log(response2.data);
-        // Handle response2 if needed
     
-        // Show success message or perform other actions
         Swal.fire({
           title: "Success!",
-          text: "Data added and collection updated Successfully!",
+          text: "Product purchased Successfully!",
           icon: "success"
         });
         form.reset();
@@ -65,7 +87,7 @@ const Buyfood = () => {
             <label  className='font-lexend font-bold my-3'>Food price:</label><br />
              <input disabled defaultValue={`$ ${data.Price}`} type="text" name='price' placeholder="Type here" className="input input-bordered w-full " /><br />
              <label  className='font-lexend font-bold my-3'>Food quantity:</label><br />
-             <input defaultValue={data.quantity} type="text" name='quantity' placeholder="Type here" className="input input-bordered w-full " />
+             <input  type="text" name='quantity' placeholder="Type here" className="input input-bordered w-full " />
              </div>
              <label  className='font-lexend font-bold my-3'>Buyer Name:</label><br />
              <input disabled defaultValue={user?.displayName} type="text" name='BuyerName' placeholder="Type here" className="input input-bordered w-full " />

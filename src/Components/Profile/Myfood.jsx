@@ -19,10 +19,12 @@ const Myfood = () => {
         <h2 className='font-lexend font-bold text-2xl text-secondary text-center mt-5'>My Added items</h2>
         <div className='max-w-[1440px] mx-auto grid grid-cols-3 gap-3 mt-5'>
         {
-            food.map(foods=><div className='border border-solid shadow-xl p-5' key={foods._id}>
-               <img src={foods.FoodImage} alt="" />
+            food.map(foods=><div className='border w-[400px] border-solid shadow-xl p-5' key={foods._id}>
+               <img className='h-[270px] w-[full]' src={foods.FoodImage} alt="" />
                <h2 className='font-lexend text-black font-bold'>{foods.FoodName}</h2>
                <h2 className='font-lexend text-black font-bold'>Price: ${foods.Price}</h2>
+               <h2 className='font-lexend text-black font-bold'>items sold: {foods.purchaseCount}</h2>
+               <h2 className='font-lexend text-black font-bold'>Quantity left: {foods.quantity}</h2>
                <Link to={`/update/${foods._id}`}><button className='btn btn-secondary font-lexend font-bold mt-3'>Update</button></Link>
             </div>)
         }

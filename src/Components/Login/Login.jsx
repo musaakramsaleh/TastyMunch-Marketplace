@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +13,7 @@ const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const from = location?.state || '/'
+    console.log(from)
     const handlesociallogin = socialProvider =>{
         socialProvider()
         .then(result=>{
@@ -41,9 +42,11 @@ const Login = () => {
       toast("Invalid credentials")
     }) 
 };
-    if(user){
-      return  navigate('/')
-    }
+    // useEffect(()=>{
+    //   if(user){
+    //     navigate('/')
+    //   }
+    // },[navigate,user])
     return (
       
         <div className='min-h-screen'>

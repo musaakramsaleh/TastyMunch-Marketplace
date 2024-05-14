@@ -13,6 +13,7 @@ import Myfood from '../Components/Profile/Myfood';
 import Myorder from '../Components/Profile/Myorder';
 import Buyfood from '../Components/buyfood/Buyfood';
 import Update from '../Components/Update/Update';
+import Privateroute from '../Components/Privateroute/Privateroute';
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/',
-                element:<Home></Home>
+                element:<Home></Home>,
+                loader:()=> fetch(`${import.meta.env.VITE_API_URL}/rankproduct`)
             },
             {
                 path:'/login',
@@ -44,15 +46,15 @@ const router = createBrowserRouter([
             },
             {
                 path:'/addfood',
-                element:<Addfood></Addfood>
+                element:<Privateroute><Addfood></Addfood></Privateroute>
             },
             {
                 path:'/myfood',
-                element:<Myfood></Myfood>
+                element:<Privateroute><Myfood></Myfood></Privateroute>
             },
             {
                 path:'/myorder',
-                element:<Myorder></Myorder>
+                element:<Privateroute><Myorder></Myorder></Privateroute>
             },
             {
                 path:'/allfood/:id',
@@ -61,7 +63,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/buyfood/:id',
-                element:<Buyfood></Buyfood>,
+                element:<Privateroute><Buyfood></Buyfood></Privateroute>,
                 loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/foo/${params.id}`)
             },
             {

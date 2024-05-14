@@ -8,17 +8,29 @@ const Gallery = () => {
     const {user} = UseAuth()
     const navigate = useNavigate()
     const hamba = useLoaderData()
-    const [value,setvalue] = useState({})
-    const [data,setdata] = useState({})
-    
-           
+    const [value,setvalue] = useState(hamba)
+    const [hoverStates, setHoverStates] = useState(Array(value.length).fill(false));
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = (index) => {
+        const updatedHoverStates = [...hoverStates];
+        updatedHoverStates[index] = true;
+        setHoverStates(updatedHoverStates);
+    };
+    const handleMouseLeave = (index) => {
+        const updatedHoverStates = [...hoverStates];
+        updatedHoverStates[index] = false;
+        setHoverStates(updatedHoverStates);
+    };
+
+    console.log(value)
     const handleclick= async e =>{
         if(!user){
             navigate('/login', { state: location.pathname })
            return 
         }
         const { value: formValues } = await Swal.fire({
-            title: "Multiple inputs",
+            title: "Upload your image",
             html: `
             <label>${user?.displayName}</label><br><br>
               <label>image url</label><br>
@@ -59,8 +71,22 @@ const Gallery = () => {
                 <h2 className='relative z-30 font-lexend text-center  font-bold text-3xl pt-5 text-white'>Home | Gallery</h2>
                 <div className='absolute top-0 right-0 left-0 bottom-0 bg-slate-950 opacity-40 z-20'></div>
             </div>
-            <div>
-                <button onClick={handleclick} className="py-3 px-7 bg-secondary font-bold font-lexend rounded-lg text-white">Add</button>
+            <div className='mx-auto mt-10 max-w-[1440px] grid grid-cols-3 justify-around'>
+                {
+                    value.map((values,index)=><div 
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={() => handleMouseLeave(index)}
+                    className='relative rounded-sm w-[350px]' key={values._id}>
+                        <img src={values.image} className='w-[350px]' alt="" />
+                        <div className={`absolute w-[350px] h-[233px] ${hoverStates[index] ? 'block hover ' : 'hidden transition'} hover:transition top-0  left-0 right-0 bottom-0  bg-black opacity-80`}>
+                        <h2 className='text-white font-lexend font-bold text-xl text-center p-5'>{values.name}</h2>
+                        <h2 className='text-white font-lexend font-bold text-xl text-center p-5'>{values.description}</h2>
+                     </div>
+                    </div>)
+                }
+            </div>
+            <div className='w-[120px] mx-auto mt-10'>
+                <button onClick={handleclick} className="py-3 px-7  bg-secondary font-bold font-lexend mx-auto rounded-lg text-white">Add</button>
             </div>
         </div>
     );

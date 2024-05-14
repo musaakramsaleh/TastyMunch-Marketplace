@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const AllFood = () => {
     const foo = useLoaderData()
     const [foods,setfoods] = useState(foo)
+    const [search,setSearch] = useState('')
     console.log(foods)
+    useEffect(()=>{
+      const getData = async() =>{
+        const {data} = await axios(`${import.meta.env.VITE_API_URL}/found?search=${search}`)
+      }
+    },[])
     return (
         <div className=''>
             <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(all-food.jpg)`}}>

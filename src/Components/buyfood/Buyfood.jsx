@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import axios from 'axios';
@@ -8,6 +8,10 @@ import { toast } from 'react-toastify';
 const Buyfood = () => {
     const {user} = UseAuth()
     const data = useLoaderData()
+    const [disable,setdisabled] = useState(false)
+    useEffect(() => {
+      setdisabled(data.quantity <= 0);
+    }, [data.quantity]);
     console.log(data)
     const handleSubmit = async e => {
        e.preventDefault()
@@ -44,6 +48,9 @@ const Buyfood = () => {
           text: "Cannot buy product out of stock",
           icon: "alert"
         });
+       }
+       if(data.quantity>=0){
+        setdisabled(false)
        }
        if(!quantity){
         return Swal.fire({
@@ -86,6 +93,8 @@ const Buyfood = () => {
              <div className=''>
             <label  className='font-lexend font-bold my-3'>Food price:</label><br />
              <input disabled defaultValue={`$ ${data.Price}`} type="text" name='price' placeholder="Type here" className="input input-bordered w-full " /><br />
+             <label  className='font-lexend font-bold my-3'>Availabe quantity: {disable?"Sorry no stock available":" "}</label><br />
+             <input  type="text" disabled defaultValue={`${disable?"No stock available": data.quantity}`} name='available quantity' placeholder="Type here" className="input input-bordered w-full " />
              <label  className='font-lexend font-bold my-3'>Food quantity:</label><br />
              <input  type="text" name='quantity' placeholder="Type here" className="input input-bordered w-full " />
              </div>
@@ -93,7 +102,7 @@ const Buyfood = () => {
              <input disabled defaultValue={user?.displayName} type="text" name='BuyerName' placeholder="Type here" className="input input-bordered w-full " />
              <label  className='font-lexend font-bold my-3'>Buyer email:</label><br />
              <input disabled defaultValue={user?.email} type="text" name='BuyerEmail' placeholder="Type here" className="input input-bordered w-full " />
-            <input  className='w-full bg-secondary font-lexend font-bold text-xl py-3 rounded-xl text-white cursor-pointer mt-3' type="Submit" value='Buy food' />
+            <input disabled={disable} className={`w-full  ${disable?'bg-gray-500':'bg-secondary'} font-lexend font-bold text-xl py-3 rounded-xl text-white mt-3`} type="Submit" value='Buy food' />
             </form>
             </div>
         </div> 

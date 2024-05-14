@@ -42,7 +42,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/gallery',
-                element:<Gallery></Gallery>
+                element:<Gallery></Gallery>,
+                loader:()=> fetch(`${import.meta.env.VITE_API_URL}/gallery`)
             },
             {
                 path:'/addfood',

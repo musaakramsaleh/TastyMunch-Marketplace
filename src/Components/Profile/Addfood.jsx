@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Addfood = () => {
     const{user} = UseAuth()
+    const navigate = useNavigate()
     const handleSubmit = async e=>{
         e.preventDefault()
         const form = e.target
@@ -27,6 +29,7 @@ const Addfood = () => {
                   text: "Data added Successfully!",
                   icon: "success"
                 });
+                navigate('/myfood')
                 form.reset()
               } 
         }catch(err){

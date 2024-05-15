@@ -63,7 +63,7 @@ const AllFood = () => {
   <div className="card-body">
     <h2 className="font-lexend text-black text-xl font-bold">{food.FoodName}</h2>
     <p className='font-lexend text-black text-xl font-bold'>Category: {food.FoodCategory}</p>
-    <p className='font-lexend text-black text-xl font-bold'>Price: {food.Price}</p>
+    <p className='font-lexend text-black text-xl font-bold'>Price: $ {food.Price}</p>
     <p className='font-lexend text-black text-xl font-bold'>Quantity: {food.quantity}</p>
     <div className="card-actions justify-end">
       <Link to={`/allfood/${food._id}`}><button  className="btn btn-secondary font-bold font-lexend">See Details</button></Link>

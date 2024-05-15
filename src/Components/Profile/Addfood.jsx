@@ -3,6 +3,7 @@ import UseAuth from '../../Routes/Hook/UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Addfood = () => {
     const{user} = UseAuth()
@@ -39,6 +40,7 @@ const Addfood = () => {
     }
     return (
         <div className='pb-10'>
+            <Helmet><title>TastyMUnchMarketplace | Add food</title></Helmet>
              <h2 className='text-center mt-10 font-lexend text-2xl text-secondary font-bold'>Add a Food item</h2>
             <div className='max-w-[1000px] mx-auto'>
             <form onSubmit={handleSubmit}>

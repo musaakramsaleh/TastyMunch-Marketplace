@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UseAuth from '../../Routes/Hook/UseAuth';
+import { Helmet } from 'react-helmet-async';
 const Register = () => {
     const {createUser,user,updateuserProfile} = UseAuth()
     const location = useLocation()
@@ -50,6 +51,7 @@ const Register = () => {
     }
     return (
         <div className='max-w-[1440px] mx-auto'>
+          <Helmet><title>TastyMUnchMarketplace | Register</title></Helmet>
            <h2 className=' text-4xl font-bold text-center mt-20'>Register</h2>
            <div className='mx-auto w-1/2 mt-10'>
            <form onSubmit={handleSubmit}>

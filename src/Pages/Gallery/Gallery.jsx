@@ -3,6 +3,7 @@ import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const Gallery = () => {
     const {user} = UseAuth()
@@ -65,6 +66,7 @@ const Gallery = () => {
      
     return (
         <div>
+            <Helmet><title>TastyMUnchMarketplace | Gallery</title></Helmet>
             <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(all-food.jpg)`}}>
                 <h2 className='relative z-30 font-lexend text-center pt-20 font-bold text-6xl text-white'>Gallery</h2>
                 <h2 className='relative z-30 font-lexend text-center  font-bold text-3xl pt-5 text-white'>Home | Gallery</h2>

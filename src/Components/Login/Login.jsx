@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UseAuth from '../../Routes/Hook/UseAuth';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -50,6 +51,7 @@ const Login = () => {
     return (
       
         <div className='min-h-screen'>
+          <Helmet><title>TastyMUnchMarketplace | login</title></Helmet>
           <h2 className='text-center mt-10 text-2xl font-bold'>Login</h2>
             <div className="hero max-w-[1440px] mx-auto pb-10  mt-10">
   <div className="hero-content flex-col lg:flex-row-reverse">

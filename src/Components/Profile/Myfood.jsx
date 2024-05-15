@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Myfood = () => {
     const {user} = UseAuth()
@@ -16,6 +17,7 @@ const Myfood = () => {
       console.log(food)
     return (
        <div>
+        <Helmet><title>TastyMUnchMarketplace | My added foods</title></Helmet>
         <h2 className='font-lexend font-bold text-2xl text-secondary text-center mt-5'>My Added items</h2>
         <div className='max-w-[1440px] mx-auto grid grid-cols-3 gap-3 mt-5'>
         {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AllFood = () => {
     const foo = useLoaderData();
@@ -31,6 +32,7 @@ const AllFood = () => {
 
     return (
         <div>
+            <Helmet><title>TastyMUnchMarketplace | Allfood</title></Helmet>
             <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(all-food.jpg)`}}>
                 <h2 className='relative z-30 font-lexend text-center pt-20 font-bold text-6xl text-white'>All food items</h2>
                 <h2 className='relative z-30 font-lexend text-center  font-bold text-3xl pt-5 text-white'>Home | All food items</h2>

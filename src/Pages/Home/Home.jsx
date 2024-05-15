@@ -4,6 +4,7 @@ import { Slide } from 'react-awesome-reveal';
 import Client from './Client';
 import Testimonial from './Testimonial';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 const Home = () => {
     const foo = useLoaderData()
     const [foods,setfoods] = useState(foo)
@@ -11,13 +12,14 @@ const Home = () => {
     const {user} = UseAuth()
     return (
         <div>
+          <Helmet><title>TastyMUnchMarketplace | Home</title></Helmet>
         <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(banner.jpg)`}}>
 
             <div className='relative z-40'>
             <Slide>
             <h2 className='md:text-4xl text-2xl lg:text-6xl  text-white font-lexend font-bold relative z-40 pt-16 md:pt-40 mx-auto text-center'>"Welcome to TastyMunch <br /> Marketplace Where Every <br /> Bite Tells a Story"</h2>
             <div className='text-center mx-auto w-[130px] mt-5 z-40 relative'>
-            <button className='btn btn-secondary font-bold font-lexend'>See Products</button>
+            <Link to='/allfood'><button className='btn btn-secondary font-bold font-lexend'>See All foods</button></Link>
             </div>
             </Slide>
             </div>

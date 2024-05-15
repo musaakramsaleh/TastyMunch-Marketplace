@@ -65,7 +65,7 @@ const Update = () => {
              </div>
              <div className=''>
             <label className='font-lexend font-bold my-3'>Food price:</label><br />
-             <input defaultValue={data.price} type="text" name='price' placeholder="Type here" className="input input-bordered w-full " /><br />
+             <input defaultValue={data.Price} type="text" name='price' placeholder="Type here" className="input input-bordered w-full " /><br />
              <label className='font-lexend font-bold my-3'>Food Origin (Country):</label><br />
              <input defaultValue={data.FoodOrigin} type="text" name='country' placeholder="Type here" className="input input-bordered w-full " />
              </div>

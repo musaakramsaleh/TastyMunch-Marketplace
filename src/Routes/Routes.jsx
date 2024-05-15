@@ -65,12 +65,14 @@ const router = createBrowserRouter([
             {
                 path:'/buyfood/:id',
                 element:<Privateroute><Buyfood></Buyfood></Privateroute>,
-                loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/foo/${params.id}`)
+                loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/foo/${params.id}`,{
+                    credentials: 'include'})
             },
             {
                 path:'/update/:id',
-                element:<Update></Update>,
-                loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/update/${params.id}`)
+                element:<Privateroute><Update></Update></Privateroute>,
+                loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/update/${params.id}`,{
+                    credentials: 'include'})
             }
         ]
     }

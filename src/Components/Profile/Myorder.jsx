@@ -10,7 +10,9 @@ const Myorder = () => {
     const [food,setfood] =useState([])
     useEffect(()=>{
         const getData = async ()=>{
-            const {data} = await axios(`${import.meta.env.VITE_API_URL}/product/${user?.email}`)
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/product/${user?.email}`,{
+              withCredentials:true
+            })
             setfood(data)
         }
         getData()
@@ -56,9 +58,9 @@ const Myorder = () => {
        <div>
         <Helmet><title>TastyMUnchMarketplace | My Order</title></Helmet>
         <h2 className='font-lexend font-bold text-2xl text-secondary text-center mt-5'>My Ordered Items</h2>
-        <div className='max-w-[1440px] mx-auto grid grid-cols-3 gap-3 mt-5'>
+        <div className='max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 mt-5'>
         {
-            food.map(foods=><div className='border w-[400px] border-solid shadow-xl p-5' key={foods._id}>
+            food.map(foods=><div className='border md:w-[400px] border-solid shadow-xl p-5' key={foods._id}>
                <img className='h-[270px] w-[full]' src={foods.image} alt="" />
                <h2 className='font-lexend text-black font-bold'>{foods.FoodName}</h2>
                <h2 className='font-lexend text-black font-bold'>Price: {foods.Price}</h2>

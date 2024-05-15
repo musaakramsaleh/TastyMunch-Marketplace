@@ -56,17 +56,17 @@ const AllFood = () => {
                 </div>
             </form>
             <div>
-                <div className='max-w-[1440px] mx-auto grid grid-cols-3 gap-5'>
+                <div className='max-w-[1440px] mx-auto p-3 grid grid-cols-1 md:grid-cols-3 gap-5'>
            {
             foods.map(food=> <div key={food._id} className="card card-compact mr-5 gap-5 bg-base-100 shadow-xl">
   <figure><img className='w-full h-[300px]' src={food.FoodImage} alt="Shoes" /></figure>
   <div className="card-body">
-    <h2 className="card-title">{food.FoodName}</h2>
-    <p className='font-lexend text-black font-bold'>Category: {food.FoodCategory}</p>
-    <p className='font-lexend text-black font-bold'>Price: {food.Price}</p>
-    <p className='font-lexend text-black font-bold'>Quantity: {food.quantity}</p>
+    <h2 className="font-lexend text-black text-xl font-bold">{food.FoodName}</h2>
+    <p className='font-lexend text-black text-xl font-bold'>Category: {food.FoodCategory}</p>
+    <p className='font-lexend text-black text-xl font-bold'>Price: {food.Price}</p>
+    <p className='font-lexend text-black text-xl font-bold'>Quantity: {food.quantity}</p>
     <div className="card-actions justify-end">
-      <Link to={`/allfood/${food._id}`}><button  className="btn btn-primary">See Details</button></Link>
+      <Link to={`/allfood/${food._id}`}><button  className="btn btn-secondary font-bold font-lexend">See Details</button></Link>
     </div>
   </div>
 </div>

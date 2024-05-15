@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import React, { createContext, useEffect, useState } from 'react';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import app from '../firebase/firebase-config';
+import axios from 'axios';
 export const AuthContext = createContext(null)
 const Firebase_Provider = ({children}) => {
     const [user,setUser] = useState(null)
@@ -16,9 +17,16 @@ const Firebase_Provider = ({children}) => {
     }
     useEffect(()=>{
        const unSubscribe = onAuthStateChanged(auth, (currentuser) => {
+        const userEmail = currentuser?.email || user.email
+        setUser(currentuser)
+        setLoading(false)
             if (currentuser) {
-              setUser(currentuser)
-              setLoading(false)
+              const loggedUser = {email : userEmail}
+              axios.post(`${import.meta.env.VITE_API_URL}/jwt`,loggedUser,{
+                withCredentials : true})
+                .then(res => {
+                    console.log('token response given',res)
+                })      
             } 
           });
           return ()=>{
@@ -43,8 +51,12 @@ const Firebase_Provider = ({children}) => {
         setLoading(true)
         return signInWithPopup(auth, githubProvider)
     }
-    const logout = ()=>{
+    const logout = async ()=>{
         setUser(null)
+        const {data} = await axios(`${import.meta.env.VITE_API_URL}/logout`,{
+          withCredentials:true
+        })
+        console.log(data)
         return signOut(auth)
     }
       const allvalues = {

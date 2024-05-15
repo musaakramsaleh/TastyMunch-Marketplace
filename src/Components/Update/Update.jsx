@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Swal from 'sweetalert2';
 import UseAuth from '../../Routes/Hook/UseAuth';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Update = () => {
     const{user} = UseAuth()
     const data = useLoaderData()
+    const navigate = useNavigate()
     console.log(data)
     const handleSubmit = async e=>{
         e.preventDefault()
@@ -38,11 +39,16 @@ const Update = () => {
          
         }
       })
-      window.location.reload()
+      navigate('/myfood')
+    }
+    if(user.email!==data.AddBy.email){
+      return useEffect(()=>{
+        navigate('/myfood')
+      },[])
     }
     return (
         <div className='pb-10'>
-             <h2 className='text-center mt-10 font-lexend text-2xl text-secondary font-bold'>Add a Food item</h2>
+             <h2 className='text-center mt-10 font-lexend text-2xl text-secondary font-bold'>Update</h2>
             <div className='max-w-[1000px] mx-auto'>
             <form onSubmit={handleSubmit}>
              <div className=''>

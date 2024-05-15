@@ -22,7 +22,9 @@ const Addfood = () => {
         const purchaseCount = 0;
         const fooddata = {FoodName,FoodImage,FoodCategory,quantity,Price,FoodOrigin,Description,AddBy,purchaseCount}
         try{
-            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/addfood`,fooddata)
+            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/addfood`,fooddata,{
+                withCredentials:true
+            })
             console.log(data)
             if(data.insertedId){
                 Swal.fire({

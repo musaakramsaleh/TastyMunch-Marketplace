@@ -1,6 +1,6 @@
 ## Artistry Avenue
 
-**Live Site URL:** [Artistry Avenue Live Site] (https://my-art-72b96.web.app/)
+**Live Site URL:** [Tasty Munch Marketplace Live Site] (https://restaurant-8605a.web.app/)
 
 ### Features and Characteristics:
 - Contains food items for sale.

@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import { Helmet } from 'react-helmet-async';
+import { FaGoogle } from "react-icons/fa";
 
 
 
@@ -84,13 +85,12 @@ const Login = () => {
           {errors.password && <span>This field is required</span>}
         </div>
         <div className="form-control mt-6">
-          <button className="btn bg-gradient-to-r  from-[rgba(225,139,70,255)] to-[rgba(242,184,115,255)] text-white font-semibold">Login</button>
+          <button className="btn bg-gradient-to-r bg-secondary font-lexend text-white font-bold">Login</button>
           <p>Do not have an account?<Link to='/Register' className='text-blue underline text-blue-700'>Register</Link></p>
         </div>
       </form>
       <div className='flex justify-around'>
-                            <button onClick={()=>handlesociallogin(googleLogin)} className='p-2 bg-gradient-to-r  from-[rgba(225,139,70,255)] to-[rgba(242,184,115,255)] rounded-lg text-white font-semibold mb-4 text-[16px]'>Google Login</button>
-                            <button onClick={()=>handlesociallogin(githubLogin)} className='p-2 bg-gradient-to-r  from-[rgba(225,139,70,255)] to-[rgba(242,184,115,255)] rounded-lg text-white font-semibold mb-4 text-[16px]'>Github</button>
+                            <button onClick={()=>handlesociallogin(googleLogin)} className='p-2 flex items-center justify-between gap-1 bg-secondary w-[3/4] rounded-lg text-white font-semibold mb-4 text-[16px]'><FaGoogle />Google Login</button>
                         </div>
     </div>
   </div>

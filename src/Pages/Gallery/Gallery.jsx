@@ -62,6 +62,7 @@ const Gallery = () => {
                 // Handle errors
               }
           }
+          window.location.reload()
     }
      
     return (

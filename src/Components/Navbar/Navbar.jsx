@@ -41,7 +41,8 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     {
-     user? <div className='dropdown dropdown-end z-50'>
+     user? <div className='flex'>
+      <div className='dropdown dropdown-end z-50'>
      <div
        tabIndex={0}
        role='button'
@@ -68,13 +69,11 @@ const Navbar = () => {
        <li>
          <Link to ='/myorder'><div>My ordered food items</div></Link>
        </li>
-       <li className='mt-2'>
-         <button onClick={()=>handleSignout()} className='bg-gray-200 block text-center'>Logout</button>
-       </li>
      </ul>
-   </div> :<>
-  <Link to='/login'  className="p-3 rounded-lg ml-3 text-white font-bold bg-yellow-300">Login</Link>
-    <Link to='/register'  className="p-3 rounded-lg ml-3 text-white font-bold bg-yellow-300">Register</Link>
+   </div>
+   <button onClick={()=>handleSignout()} className='bg-secondary font-lexend px-5 py-3 rounded-lg font-bold text-white block text-center'>Logout</button>
+     </div> :<>
+  <Link to='/login'  className='bg-secondary font-lexend px-5 py-3 rounded-lg font-bold text-white block text-center'>Login</Link>
   </>
    
   

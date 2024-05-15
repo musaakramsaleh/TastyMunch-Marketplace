@@ -35,10 +35,10 @@ const Update = () => {
             text: "Data updated Successfully!",
             icon: "success"
           });
-          form.reset()
+         
         }
       })
-        
+      window.location.reload()
     }
     return (
         <div className='pb-10'>

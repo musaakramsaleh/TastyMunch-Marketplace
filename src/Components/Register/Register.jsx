@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UseAuth from '../../Routes/Hook/UseAuth';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 const Register = () => {
     const {createUser,user,updateuserProfile} = UseAuth()
     const location = useLocation()
@@ -33,6 +34,8 @@ const Register = () => {
         const re = {name,email,password,photo}
         createUser(email,password)
         .then(()=>{
+          const response1 = axios.post(`${import.meta.env.VITE_API_URL}/user`, re);
+              console.log(response1.data);
             updateuserProfile(name,photo).then(()=>{
               Swal.fire({
                 title: "Success!",
@@ -48,6 +51,7 @@ const Register = () => {
             toast(error.message)
         })
         console.log(user)
+        
     }
     return (
         <div className='max-w-[1440px] mx-auto'>

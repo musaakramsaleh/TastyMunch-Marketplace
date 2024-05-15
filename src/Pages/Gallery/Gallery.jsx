@@ -11,7 +11,6 @@ const Gallery = () => {
     const [value,setvalue] = useState(hamba)
     const [hoverStates, setHoverStates] = useState(Array(value.length).fill(false));
     const [isHovered, setIsHovered] = useState(false);
-
     const handleMouseEnter = (index) => {
         const updatedHoverStates = [...hoverStates];
         updatedHoverStates[index] = true;
@@ -71,7 +70,7 @@ const Gallery = () => {
                 <h2 className='relative z-30 font-lexend text-center  font-bold text-3xl pt-5 text-white'>Home | Gallery</h2>
                 <div className='absolute top-0 right-0 left-0 bottom-0 bg-slate-950 opacity-40 z-20'></div>
             </div>
-            <div className='mx-auto mt-10 max-w-[1440px] grid grid-cols-3 justify-around'>
+            <div className='mx-auto mt-10 gap-5 max-w-[1440px] grid grid-cols-3 justify-around'>
                 {
                     value.map((values,index)=><div 
                         onMouseEnter={() => handleMouseEnter(index)}

@@ -69,17 +69,17 @@ const Gallery = () => {
         <div>
             <Helmet><title>TastyMUnchMarketplace | Gallery</title></Helmet>
             <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(all-food.jpg)`}}>
-                <h2 className='relative z-30 font-lexend text-center pt-20 font-bold text-6xl text-white'>Gallery</h2>
+                <h2 className='relative z-30 font-lexend text-center pt-20 font-bold text-3xl md:text-6xl text-white'>Gallery</h2>
                 <h2 className='relative z-30 font-lexend text-center  font-bold text-3xl pt-5 text-white'>Home | Gallery</h2>
                 <div className='absolute top-0 right-0 left-0 bottom-0 bg-slate-950 opacity-40 z-20'></div>
             </div>
-            <div className='mx-auto mt-10 gap-5 max-w-[1440px] grid grid-cols-3 justify-around'>
+            <div className='mx-auto mt-10 gap-5 max-w-[1440px] grid grid-cols-1 md:grid-cols-3 justify-around'>
                 {
                     value.map((values,index)=><div 
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={() => handleMouseLeave(index)}
                     className='relative rounded-sm w-[350px]' key={values._id}>
-                        <img src={values.image} className='w-[350px]' alt="" />
+                        <img src={values.image} className='w-[350px] h-[233px]' alt="" />
                         <div className={`absolute w-[350px] h-[233px] ${hoverStates[index] ? 'block hover ' : 'hidden transition'} hover:transition top-0  left-0 right-0 bottom-0  bg-black opacity-80`}>
                         <h2 className='text-white font-lexend font-bold text-xl text-center p-5'>{values.name}</h2>
                         <h2 className='text-white font-lexend font-bold text-xl text-center p-5'>{values.description}</h2>

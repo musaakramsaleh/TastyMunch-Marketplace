@@ -34,7 +34,7 @@ const AllFood = () => {
         <div>
             <Helmet><title>TastyMUnchMarketplace | Allfood</title></Helmet>
             <div className='relative h-[300px] md:h-[600px] bg-cover bg-center' style={{backgroundImage: `url(all-food.jpg)`}}>
-                <h2 className='relative z-30 font-lexend text-center pt-20 font-bold text-6xl text-white'>All food items</h2>
+                <h2 className='relative z-30 font-lexend text-center pt-20 font-bold text-3xl md:text-6xl text-white'>All food items</h2>
                 <h2 className='relative z-30 font-lexend text-center  font-bold text-3xl pt-5 text-white'>Home | All food items</h2>
                 <div className='absolute top-0 right-0 left-0 bottom-0 bg-slate-950 opacity-40 z-20'></div>
             </div>

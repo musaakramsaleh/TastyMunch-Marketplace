@@ -16,6 +16,7 @@ import Update from '../Components/Update/Update';
 import Privateroute from '../Components/Privateroute/Privateroute';
 
 
+
 const router = createBrowserRouter([
     {
         element:<Root></Root>,
@@ -38,7 +39,6 @@ const router = createBrowserRouter([
             {
                 path:'/allfood',
                 element:<AllFood></AllFood>,
-                loader:()=> fetch(`${import.meta.env.VITE_API_URL}/food`)
             },
             {
                 path:'/gallery',

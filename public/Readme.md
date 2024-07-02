@@ -1,4 +1,4 @@
-## Artistry Avenue
+## TastyMunch Marketplace
 
 **Live Site URL:** [Tasty Munch Marketplace Live Site] (https://restaurant-8605a.web.app/)
 
